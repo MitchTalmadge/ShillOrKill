@@ -1,0 +1,1 @@
+web: java -jar target/shill-or-kill.jar

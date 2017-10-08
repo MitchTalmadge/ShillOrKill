@@ -22,3 +22,13 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+### Spring Boot ###
+application-development.properties
+
+### Frontend ###
+node_modules/
+lib/
+npm-debug.log*
+package-lock.json
+.awcache/
