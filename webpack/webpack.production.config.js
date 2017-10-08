@@ -4,10 +4,6 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Using AOT main and vendor files.
-config.entry.main = path.join(__dirname, '../src/frontend/scripts/main-aot.ts');
-config.entry.vendor = path.join(__dirname, '../src/frontend/scripts/vendors/vendors-aot.ts');
-
 // Using AOT TypeScript compiler.
 config.module.rules.unshift(
     {
@@ -39,8 +35,5 @@ config.plugins.push(
         chunksSortMode: 'dependency'
     })
 );
-
-config.devtool = 'source-map';
-//config.output.sourceMapFilename = "";
 
 module.exports = config;
