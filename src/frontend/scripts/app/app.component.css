@@ -1,7 +1,6 @@
 .sk-app::before {
-    background: url('../../resources/images/background.jpg') no-repeat center;
+    background: url('../../resources/images/background-frost.jpg') no-repeat center;
     background-size: cover;
-    filter: blur(3px);
 
     width: 100%;
     height: 100%;

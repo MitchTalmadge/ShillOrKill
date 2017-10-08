@@ -4,6 +4,7 @@ import {VoteComponent} from "./vote.component";
 import {SharedModule} from "../../shared/shared.module";
 import {FooterModule} from "../../app/footer/footer.module";
 import {VoteRoutesModule} from "./vote.routes";
+import {HeaderModule} from "../../app/header/header.module";
 
 /**
  * The main voting page.
@@ -11,6 +12,7 @@ import {VoteRoutesModule} from "./vote.routes";
 @NgModule({
     imports: [
         SharedModule,
+        HeaderModule,
         FooterModule,
         VoteRoutesModule
     ],

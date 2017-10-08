@@ -1,8 +1,7 @@
 /* Splash screen main background and styling */
 #splashscreen::before {
-    background: url('../images/background.jpg') no-repeat center;
+    background: url('../images/background-blur.jpg') no-repeat center;
     background-size: cover;
-    filter: blur(3px);
 
     width: 100%;
     height: 100%;
@@ -38,23 +37,14 @@ sk-app:empty + #splashscreen {
 }
 
 /* Logo container */
-#splashscreen .logo-container::before {
-    background-color: white;
-    opacity: 0.6;
-
-    width: 100%;
-    height: 25%;
-    z-index: -1;
-
-    position: absolute;
-    top: calc(50% - (25% / 2));
-    left: 0;
-
-    content: "";
-}
-
 #splashscreen .logo-container {
     width: 100%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+
+    background: url('../images/background-frost.jpg') no-repeat fixed center;
+    background-size: cover;
 }
 
 /* Logo Image */
