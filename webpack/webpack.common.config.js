@@ -75,7 +75,8 @@ const config = {
             tether: 'tether',
             Tether: 'tether',
             "window.tether": 'tether',
-            "window.Tether": 'tether'
+            "window.Tether": 'tether',
+            Popper: 'popper.js'
         })
     ],
 

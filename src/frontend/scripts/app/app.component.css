@@ -1,34 +1,25 @@
+.sk-app::before {
+    background: url('../../resources/images/background.jpg') no-repeat center;
+    background-size: cover;
+    filter: blur(3px);
+
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+
+    position: absolute;
+    content: "";
+}
 .sk-app {
     height: 100vh;
 }
 
-/* Link and Text Styling */
-
-.sk-app h1, .sk-app h2, .sk-app h3, .sk-app h4, .sk-app h5, .sk-app h6 {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-}
-
-.sk-app a {
-    color: #4272b7;
-}
-
-/* Make disabled links appear grey */
-.sk-app a.disabled {
-    color: grey !important;
-    pointer-events: none;
-}
-
-/* Add pointer cursor to links without href, which Angular uses a lot of. (Becuase of the click event) */
+/* Add pointer cursor to links without href, which Angular uses a lot of. (Because of the click event) */
 .sk-app a:not([href]) {
     cursor: pointer;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none
-}
-
-.sk-app .text-primary {
-    color: #4272b7 !important;
 }
 
 .no-select {
@@ -37,101 +28,6 @@
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* Internet Explorer/Edge */
     user-select: none; /* Non-prefixed version, currently not supported by any browser */
-}
-
-/* Nav Styling */
-
-.dropdown-menu > .active > a,
-.dropdown-menu > .active > a:hover,
-.dropdown-menu > .active > a:focus {
-    background-color: #4272b7;
-}
-
-/* Button Styling */
-
-.sk-app .btn-primary,
-.sk-app .pagination > .active > a,
-.sk-app .pagination > .active > span,
-.sk-app .pagination > .active > a:hover,
-.sk-app .pagination > .active > span:hover,
-.sk-app .pagination > .active > a:focus,
-.sk-app .pagination > .active > span:focus,
-.sk-app .btn-primary.disabled:hover,
-.sk-app .btn-primary[disabled]:hover,
-.sk-app fieldset[disabled] .btn-primary:hover,
-.sk-app .btn-primary.disabled:focus,
-.sk-app .btn-primary[disabled]:focus,
-.sk-app fieldset[disabled] .btn-primary:focus,
-.sk-app .btn-primary.disabled.focus,
-.sk-app .btn-primary[disabled].focus,
-.sk-app fieldset[disabled] .btn-primary.focus {
-    background-color: #4272b7;
-    border-color: #39629C;
-}
-
-.sk-app .btn-primary:hover {
-    background-color: #39629C;
-    border-color: #39629C;
-}
-
-.sk-app .btn:focus {
-    outline: none;
-}
-
-.sk-app .btn.btn-large {
-    font-size: 30px;
-}
-
-.btn-none {
-    padding: 0;
-    border: none;
-    background: none;
-}
-
-.sk-app .btn-toolbar .btn {
-    margin-bottom: 5px;
-}
-
-/* Select Box Styling */
-
-.sk-app select.big-select {
-    display: block;
-    font-size: 20px;
-    width: 100%;
-    border-radius: 4px;
-    padding: 0 12px;
-    margin-bottom: 10px;
-}
-
-.sk-app select.big-select:disabled {
-    background-color: #eee;
-}
-
-.sk-app select.form-control {
-    height: 34px !important;
-}
-
-/* Switch Styling */
-
-.sk-app .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-primary,
-.sk-app .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-primary {
-    background: #4272b7;
-}
-
-.sk-app .ui-state-highlight,
-.sk-app .ui-widget-content .ui-state-highlight,
-.sk-app .ui-widget-header .ui-state-highlight {
-    background-color: #4272b7;
-}
-
-/* Form Styling */
-
-.sk-app .form-control {
-    border-radius: 0;
-}
-
-.sk-app .input-group-addon {
-    border-radius: 0;
 }
 
 /* Scrollbar */
@@ -146,30 +42,4 @@
     border: 4px solid transparent;
     border-radius: 8px;
     background-clip: content-box;
-}
-
-/* Spacing Helpers */
-
-.vh-100 {
-    height: 100vh !important;
-}
-
-.no-padding {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
-/* Breadcrumbs */
-
-ol.breadcrumb {
-    height: 60px;
-    padding: 15px 30px;
-    margin-bottom: 0;
-    font-size: 20px;
-    border-bottom: 1px solid #ddd;
-    border-radius: 0;
-    background-color: #fff;
-    white-space: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
 }

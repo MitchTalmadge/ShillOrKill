@@ -1,6 +1,6 @@
 /* Splash screen main background and styling */
 #splashscreen::before {
-    background: url('background.jpg') no-repeat center;
+    background: url('../images/background.jpg') no-repeat center;
     background-size: cover;
     filter: blur(3px);
 
@@ -9,7 +9,6 @@
     z-index: -1;
 
     position: absolute;
-    display: block;
     content: "";
 }
 #splashscreen {
