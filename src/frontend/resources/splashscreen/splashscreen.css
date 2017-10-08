@@ -1,0 +1,30 @@
+/* Splashscreen, hidden by default. */
+#splashscreen {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    background: url('background.jpg') no-repeat center;
+    background-size: cover;
+    border-top: 10px solid #4272b7;
+    box-sizing: border-box;
+
+    opacity: 0;
+    transition: opacity .8s ease-in-out;
+
+    pointer-events: none;
+}
+
+/* Show splashscreen when at-app is empty */
+sk-app:empty + #splashscreen {
+    opacity: 1;
+}

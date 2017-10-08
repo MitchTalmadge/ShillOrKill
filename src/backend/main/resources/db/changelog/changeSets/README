@@ -1,0 +1,9 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Do not rename any of these files! Doing so after the changeSet has been applied will break liquibase!
+
+Once a changeSet has been deployed to live servers, modifications to it will NOT be seen.
+You must create a new changeSet, not modify past ones! Check the date before modifying a changeSet;
+has a release been deployed since then? If so, make a NEW changeSet.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

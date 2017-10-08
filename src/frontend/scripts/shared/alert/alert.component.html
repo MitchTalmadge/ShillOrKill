@@ -1,0 +1,5 @@
+<div class="alert alert-{{severity}}"
+     [@alertDisplayed]="isDisplayed()">
+    {{isDisplayed() ? message : undefined}}
+    <ng-content *ngIf="displayed"></ng-content>
+</div>

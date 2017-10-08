@@ -1,0 +1,16 @@
+.card {
+    box-shadow: #ddd 0 0 8px 2px;
+    border: none;
+    border-top: 6px solid #4272b7;
+}
+
+.card.no-top-border {
+    border-top: none;
+}
+
+/* Scrollbar */
+
+.card ::-webkit-scrollbar {
+    width: 16px;
+    background-color: transparent;
+}

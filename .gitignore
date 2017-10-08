@@ -27,8 +27,8 @@ nbdist/
 application-development.properties
 
 ### Frontend ###
-node_modules/
-lib/
+/node_modules/
+/lib/
 npm-debug.log*
-package-lock.json
+/package-lock.json
 .awcache/

@@ -49,11 +49,11 @@ const config = {
             },
             {
                 test: /manifest\.json/,
-                use: "file-loader?name=./resources/" + buildDir + "/json/[hash].[ext]"
+                use: "file-loader?name=./resources/json/[hash].[ext]"
             },
             {
                 test: /\.(png|jpg|gif|svg|ico)(\?v=[\d.]+)?$/,
-                use: "file-loader?name=./resources/" + buildDir + "/images/[hash].[ext]"
+                use: "file-loader?name=./resources/images/[hash].[ext]"
             },
             {
                 test: /\.(ttf|eot|woff|woff2)(\?v=[\d.]+)?$/,

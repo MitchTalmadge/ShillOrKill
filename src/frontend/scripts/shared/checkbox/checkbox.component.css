@@ -1,0 +1,8 @@
+.custom-control-input:checked ~ .custom-control-indicator {
+    background-color: #4272b7;
+}
+
+.custom-control-input:focus ~ .custom-control-indicator {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

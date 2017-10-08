@@ -1,0 +1,18 @@
+<div class="card"
+	 [class.no-top-border]="noTopBorder">
+	<div class="card-header"
+		 *ngIf="header.length > 0">
+		<ng-content select="sk-card-header"></ng-content>
+	</div>
+	<div class="card-block">
+		<h4 *ngIf="title"
+			class="pb-3">
+			{{title}}
+		</h4>
+		<ng-content select="sk-card-block"></ng-content>
+	</div>
+	<div class="card-footer"
+		 *ngIf="footer.length > 0">
+		<ng-content select="sk-card-footer"></ng-content>
+	</div>
+</div>
