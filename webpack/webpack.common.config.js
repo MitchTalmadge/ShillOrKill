@@ -63,10 +63,16 @@ const config = {
     },
 
     plugins: [
+        // This plugin removes all un-used locales from moment (a nearly 200kb reduction).
+        new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
+
+        // Puts chunks in correct order.
         new webpack.optimize.CommonsChunkPlugin({
-            name: ['polyfills', 'vendor', 'main'].reverse(),
+            name: ['main', 'vendor', 'polyfills'],
             minChunks: Infinity
         }),
+
+        // Aliases for JS libraries.
         new webpack.ProvidePlugin({
             jQuery: 'jquery',
             $: 'jquery',
@@ -92,8 +98,8 @@ const config = {
     output: {
         path: path.join(__dirname, '../target/classes/static/'),
         filename: './resources/scripts/[name]-[chunkhash].js',
-        sourceMapFilename: './resources/scripts/[name]-[chunkhash].map',
-        chunkFilename: './resources/scripts/[id]-[chunkhash].chunk.js'
+        chunkFilename: './resources/scripts/[name]-[chunkhash].js',
+        sourceMapFilename: './resources/scripts/[name]-[chunkhash].map'
     },
 
     node: {

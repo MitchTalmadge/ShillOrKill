@@ -4,6 +4,11 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// Using AOT main and vendor files.
+config.entry.main = path.join(__dirname, '../src/frontend/scripts/main-aot.ts');
+config.entry.vendor = path.join(__dirname, '../src/frontend/scripts/vendors/vendors-aot.ts');
+
+// Using AOT TypeScript compiler.
 config.module.rules.unshift(
     {
         test: /\.ts$/,
@@ -13,10 +18,12 @@ config.module.rules.unshift(
 );
 
 config.plugins.push(
+    // AOT Angular Plugin
     new AotPlugin({
         tsConfigPath: path.join(__dirname, '../tsconfig.json'),
         entryModule: path.join(__dirname, '../src/frontend/scripts/app.module#AppModule')
     }),
+    // HTML Webpack Plugin with dev not present (aka false)
     new HtmlWebpackPlugin({
         template: path.join(__dirname, '../src/frontend/index.html.ejs'),
         favicon: path.join(__dirname, '../src/frontend/resources/favicons/favicon.ico'),
@@ -33,6 +40,7 @@ config.plugins.push(
     })
 );
 
-config.output.sourceMapFilename = "";
+config.devtool = 'source-map';
+//config.output.sourceMapFilename = "";
 
 module.exports = config;

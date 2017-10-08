@@ -1,2 +1,2 @@
-import "moment-timezone";
-import "moment";
+require("moment");
+require("moment-timezone/builds/moment-timezone.min.js");

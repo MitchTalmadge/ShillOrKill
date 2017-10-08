@@ -2,7 +2,6 @@ const config = require('./webpack.common.config.js');
 const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 config.module.rules.unshift(
     {
@@ -25,6 +24,7 @@ config.devServer = {
 
 
 config.plugins.push(
+    // HTML Webpack Plugin with dev set to true.
     new HtmlWebpackPlugin({
         template: path.join(__dirname, '../src/frontend/index.html.ejs'),
         favicon: path.join(__dirname, '../src/frontend/resources/favicons/favicon.ico'),
@@ -39,9 +39,6 @@ config.plugins.push(
         },
         chunksSortMode: 'dependency',
         dev: true
-    }),
-    new CleanWebpackPlugin(['resources'], {
-        root: path.join(__dirname, '../target/classes/static')
     })
 );
 

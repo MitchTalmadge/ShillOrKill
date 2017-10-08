@@ -20,6 +20,11 @@
     "useCache": true
   },
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "src/frontend/scripts/main-aot.ts"
+  ],
+  "angularCompilerOptions": {
+    "genDir": "./lib/aot/",
+    "skipMetadataEmit": true
+  }
 }
