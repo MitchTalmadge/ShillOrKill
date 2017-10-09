@@ -1,6 +1,9 @@
-matrix:
+jobs:
   include:
-    - language: node_js
+    - stage: test
+      language: node_js
+      node_js:
+        - "6"
       cache:
         directories:
           - "node_modules"
@@ -8,7 +11,8 @@ matrix:
       script:
         - npm run build
 
-    - language: java
+    - stage: test
+      language: java
       cache:
         directories:
           - "$HOME/.m2"
@@ -19,10 +23,13 @@ matrix:
       before_script:
         - psql -c 'create database shillorkill;' -U postgres
 
-deploy:
-  provider: heroku
-  api_key:
-    secure: s7F7QRDTkhhme5YB/ewscyLx4o3YNJ+Q43vAsV2gGn4L8VL8JqMOt8XSsq/l9ghVQf//zNFQAyqSa5Wt9EjvCM6PSwEXVmWLY5Zslx7MaoI5uMedKf07cGEjm3qQPJNprCdhgBDcC6fze0ySQkMDP8EsRtGVn+mdlGo0+9BKt7VZLS2CdjyXTgFMqNj9OCAhSKx1nguNR+XDpE47P+85PwS1WcW/A0OTpUgkMNjqo48i/56Gq2iPWbK5zPSFNjhFgC0US6r7ahm8qaqXoyccPTEzpH0rN403o/UVheCVTAlNWOpKr4e6Bm8IWB8SZYU2UDm9wCBqe5Ii49W04r7p1hKPOQC9gH+Yw2N738nD/87zIhY9jS3vrrzbYUbHeOvdsLCWyg8+wepwOUd6DYcke5flD9CgiuZNgFoxysjo5A555lIGVLU/30m749SlQUQ8s7tYnOmtpgs2eEFjDGmcy3FeD9tDuT3BWnKVzY+coi7aLIf/eNa/zO85GZZ9nRvc+H68j9L7LtDMEurnoNFthCNLPDdZkhuZsIs7WYvL2nvzJmtNxrYQQnrxjqQN6DwtPeOokQ+rQTiUBneH1IjX7bU+CMsYr18oyg3QAjm2lc3lKdWPL/4up2F842eeRZ3st/NGTqwyPbq4c1P51i/QM0UxBp1U448aaqYQYvj/omw=
-  app: mitchtalmadge-shill-or-kill
-  on:
-    tags: true
+    - stage: deploy
+      language: java
+      script: skip
+      deploy:
+        provider: heroku
+        api_key:
+          secure: s7F7QRDTkhhme5YB/ewscyLx4o3YNJ+Q43vAsV2gGn4L8VL8JqMOt8XSsq/l9ghVQf//zNFQAyqSa5Wt9EjvCM6PSwEXVmWLY5Zslx7MaoI5uMedKf07cGEjm3qQPJNprCdhgBDcC6fze0ySQkMDP8EsRtGVn+mdlGo0+9BKt7VZLS2CdjyXTgFMqNj9OCAhSKx1nguNR+XDpE47P+85PwS1WcW/A0OTpUgkMNjqo48i/56Gq2iPWbK5zPSFNjhFgC0US6r7ahm8qaqXoyccPTEzpH0rN403o/UVheCVTAlNWOpKr4e6Bm8IWB8SZYU2UDm9wCBqe5Ii49W04r7p1hKPOQC9gH+Yw2N738nD/87zIhY9jS3vrrzbYUbHeOvdsLCWyg8+wepwOUd6DYcke5flD9CgiuZNgFoxysjo5A555lIGVLU/30m749SlQUQ8s7tYnOmtpgs2eEFjDGmcy3FeD9tDuT3BWnKVzY+coi7aLIf/eNa/zO85GZZ9nRvc+H68j9L7LtDMEurnoNFthCNLPDdZkhuZsIs7WYvL2nvzJmtNxrYQQnrxjqQN6DwtPeOokQ+rQTiUBneH1IjX7bU+CMsYr18oyg3QAjm2lc3lKdWPL/4up2F842eeRZ3st/NGTqwyPbq4c1P51i/QM0UxBp1U448aaqYQYvj/omw=
+        app: mitchtalmadge-shill-or-kill
+        on:
+          tags: true
