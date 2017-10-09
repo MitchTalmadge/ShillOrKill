@@ -26,6 +26,11 @@ jobs:
     - stage: deploy
       language: java
       script: skip
+      before_deploy:
+        - nvm install "6.11.4"
+        - mvn clean
+        - nvm run build
+        - mvn install -DskipTests=true -Dmaven.javadoc.skip=true
       deploy:
         provider: heroku
         api_key:
