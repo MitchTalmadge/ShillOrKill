@@ -38,6 +38,7 @@ public class TwitterService {
                         .setOAuthConsumerSecret(CONSUMER_SECRET)
                         .setOAuthAccessToken(ACCESS_TOKEN)
                         .setOAuthAccessTokenSecret(ACCESS_TOKEN_SECRET)
+                        .setTweetModeExtended(true)
                         .build()
         );
 
