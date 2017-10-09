@@ -33,7 +33,7 @@ public class TweetService {
 
         // Sort the Tweets by who has the least number of cumulative votes (either shills, kills, or wrongs).
         List<Tweet> sortedTweets = allTweets.stream()
-                .sorted(Comparator.comparing((Tweet tweet) -> tweet.getShills() + tweet.getKills() + tweet.getWrongs()).reversed())
+                .sorted(Comparator.comparing((Tweet tweet) -> tweet.getShills() + tweet.getKills() + tweet.getWrongs()))
                 .collect(Collectors.toList());
 
         // The least number of votes is chosen.

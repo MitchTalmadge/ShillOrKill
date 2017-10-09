@@ -47,11 +47,25 @@ public class Tweet implements Serializable {
      * @param status The status to extract data from.
      */
     public Tweet(Status status) {
-        statusId = status.getId();
-        createdAt = status.getCreatedAt();
-        text = status.getText();
-        authorName = status.getUser().getName();
-        authorImageUrl = status.getUser().getProfileImageURLHttps();
+        this(status.getId(), status.getCreatedAt(), status.getText(), status.getUser().getName(), status.getUser().getProfileImageURLHttps());
+    }
+
+    /**
+     * Constructs a Tweet entity from the given data.
+     * Alternatively, use {@link Tweet#Tweet(twitter4j.Status)} to do this automatically given a Status.
+     *
+     * @param statusId       The ID of the Status associated with this Tweet.
+     * @param createdAt      When the Status was created on Twitter.
+     * @param text           The text of the Status.
+     * @param authorName     The name of the author of the Status.
+     * @param authorImageUrl The URL (HTTPS) to the author's profile picture.
+     */
+    public Tweet(long statusId, Date createdAt, String text, String authorName, String authorImageUrl) {
+        this.statusId = statusId;
+        this.createdAt = createdAt;
+        this.text = text;
+        this.authorName = authorName;
+        this.authorImageUrl = authorImageUrl;
     }
 
     /**

@@ -17,14 +17,17 @@ public class TweetDiscoveryService {
     private final LogService logService;
     private final TwitterService twitterService;
     private final TweetRepository tweetRepository;
+    private final SpringProfileService springProfileService;
 
     @Autowired
     public TweetDiscoveryService(LogService logService,
                                  TwitterService twitterService,
-                                 TweetRepository tweetRepository) {
+                                 TweetRepository tweetRepository,
+                                 SpringProfileService springProfileService) {
         this.logService = logService;
         this.twitterService = twitterService;
         this.tweetRepository = tweetRepository;
+        this.springProfileService = springProfileService;
     }
 
     /**
@@ -33,6 +36,10 @@ public class TweetDiscoveryService {
     @Scheduled(fixedRate = 60000)
     @Async
     public void discoverTweets() {
+        // Disable discovery during unit testing.
+        if(springProfileService.isProfileActive(SpringProfileService.Profile.TESTING))
+            return;
+
         logService.logDebug(getClass(), "Searching for new Tweets...");
 
         try {
