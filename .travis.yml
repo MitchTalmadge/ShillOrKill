@@ -29,7 +29,7 @@ jobs:
       before_deploy:
         - nvm install "6.11.4"
         - mvn clean
-        - nvm run build
+        - npm run build
         - mvn install -DskipTests=true -Dmaven.javadoc.skip=true
       deploy:
         provider: heroku
