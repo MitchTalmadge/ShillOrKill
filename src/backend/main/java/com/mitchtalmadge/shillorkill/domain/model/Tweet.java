@@ -35,6 +35,13 @@ public class Tweet implements Serializable {
     private int wrongs;
 
     /**
+     * Required 0-arg constructor for Spring Framework.
+     */
+    private Tweet() {
+
+    }
+
+    /**
      * Constructs a Tweet entity from the given status.
      *
      * @param status The status to extract data from.

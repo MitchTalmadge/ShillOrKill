@@ -37,7 +37,7 @@ public class TweetDiscoveryService {
 
         try {
 
-            QueryResult venResults = twitterService.getTwitter().search(new Query("$VEN").count(100));
+            QueryResult venResults = twitterService.getTwitter().search(new Query("$VEN").count(100).lang("en"));
             venResults.getTweets().forEach(status -> {
 
                 // Consolidate re-tweets to prevent duplicates.
