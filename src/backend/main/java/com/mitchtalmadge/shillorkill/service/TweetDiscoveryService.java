@@ -73,7 +73,7 @@ public class TweetDiscoveryService {
         // Add the new status.
         Tweet tweet = new Tweet(status);
         tweetRepository.save(tweet);
-        logService.logDebug(getClass(), "New Tweet Added: " + tweet);
+        logService.logInfo(getClass(), "New Tweet Added: " + tweet);
     }
 
 }
