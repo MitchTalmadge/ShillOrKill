@@ -5,7 +5,7 @@
 
     <groupId>com.mitchtalmadge</groupId>
     <artifactId>shill-or-kill</artifactId>
-    <version>0.0.3</version>
+    <version>0.0.4</version>
     <packaging>jar</packaging>
 
     <name>shill-or-kill</name>

@@ -25,11 +25,6 @@ jobs:
 
     - stage: deploy
       language: java
-      cache:
-        directories:
-          - "$HOME/.m2"
-          - "node_modules"
-          - ".awcache"
       script: skip
       before_deploy:
         - nvm install "6.11.4"
