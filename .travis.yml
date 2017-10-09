@@ -1,13 +1,24 @@
-language: java
-cache:
-  directories:
-  - "$HOME/.m2"
-services:
-  - postgresql
-addons:
-  postgresql: "9.4"
-before_script:
-  - psql -c 'create database shillorkill;' -U postgres
+matrix:
+  include:
+    - language: node_js
+      cache:
+        directories:
+          - "node_modules"
+          - ".awcache"
+      script:
+        - npm run build
+
+    - language: java
+      cache:
+        directories:
+          - "$HOME/.m2"
+      services:
+        - postgresql
+      addons:
+        postgresql: "9.4"
+      before_script:
+        - psql -c 'create database shillorkill;' -U postgres
+
 deploy:
   provider: heroku
   api_key:
