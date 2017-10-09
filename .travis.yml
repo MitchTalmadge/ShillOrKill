@@ -34,6 +34,7 @@ jobs:
         - mvn install -DskipTests=true -Dmaven.javadoc.skip=true
         - mv target/shill-or-kill.jar .
         - git add shill-or-kill.jar
+        - git commit -a -m "Automatic Travis Jar Build Commit"
       deploy:
         provider: heroku
         api_key:
