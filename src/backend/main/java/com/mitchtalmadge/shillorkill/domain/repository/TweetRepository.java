@@ -1,4 +1,4 @@
-package com.mitchtalmadge.shillorkill.domain.repositories;
+package com.mitchtalmadge.shillorkill.domain.repository;
 
 import com.mitchtalmadge.shillorkill.domain.model.Tweet;
 import org.springframework.data.jpa.repository.JpaRepository;

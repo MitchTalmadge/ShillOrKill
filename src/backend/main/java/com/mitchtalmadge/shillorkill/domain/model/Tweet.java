@@ -117,6 +117,27 @@ public class Tweet implements Serializable {
         return wrongs;
     }
 
+    /**
+     * Adds a vote to the shill counter.
+     */
+    public void voteShill() {
+        shills++;
+    }
+
+    /**
+     * Adds a vote to the kill counter.
+     */
+    public void voteKill() {
+        kills++;
+    }
+
+    /**
+     * Adds a vote to the wrong coin counter.
+     */
+    public void voteWrong() {
+        wrongs++;
+    }
+
     @Override
     public String toString() {
         return "Tweet{" +

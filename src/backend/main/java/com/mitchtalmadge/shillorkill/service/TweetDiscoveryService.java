@@ -1,7 +1,7 @@
 package com.mitchtalmadge.shillorkill.service;
 
 import com.mitchtalmadge.shillorkill.domain.model.Tweet;
-import com.mitchtalmadge.shillorkill.domain.repositories.TweetRepository;
+import com.mitchtalmadge.shillorkill.domain.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
