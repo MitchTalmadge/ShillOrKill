@@ -1,1 +1,1 @@
-web: java -jar target/shill-or-kill.jar
+web: java -jar shill-or-kill.jar

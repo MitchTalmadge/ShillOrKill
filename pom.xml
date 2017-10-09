@@ -5,7 +5,7 @@
 
     <groupId>com.mitchtalmadge</groupId>
     <artifactId>shill-or-kill</artifactId>
-    <version>0.0.4</version>
+    <version>0.0.5</version>
     <packaging>jar</packaging>
 
     <name>shill-or-kill</name>
@@ -98,6 +98,7 @@
     </dependencies>
 
     <build>
+        <finalName>shill-or-kill</finalName>
         <sourceDirectory>src/backend/main/java</sourceDirectory>
         <resources>
             <resource>

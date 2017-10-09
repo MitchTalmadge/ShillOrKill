@@ -32,6 +32,7 @@ jobs:
         - npm install
         - npm run build
         - mvn install -DskipTests=true -Dmaven.javadoc.skip=true
+        - mv target/shill-or-kill.jar .
       deploy:
         provider: heroku
         api_key:
