@@ -10,7 +10,7 @@ import {SKTweet} from "../../../model/tweet.model";
 export class TweetComponent implements OnInit {
 
     @Input()
-    private tweet: SKTweet;
+    public tweet: SKTweet;
 
     constructor() {
     }

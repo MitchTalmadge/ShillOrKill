@@ -1,12 +1,10 @@
-import {Moment} from "moment";
-
 export interface SKTweet {
 
     id: number;
 
-    statusId: number;
+    statusId: string;
 
-    createdAt: Moment;
+    createdAt: number;
 
     text: string;
 

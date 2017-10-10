@@ -6,7 +6,7 @@ public class TweetDTO {
 
     public long id;
 
-    public long statusId;
+    public String statusId;
 
     public Date createdAt;
 
