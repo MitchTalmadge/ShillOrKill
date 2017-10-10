@@ -4,6 +4,7 @@ import {LoaderService} from "./services/loader.service";
 import {CustomErrorHandler} from "./error-handler";
 import {HttpModule} from "@angular/http";
 import {AnalyticsService} from "./services/analytics.service";
+import {VotingService} from "./services/voting.service";
 
 /**
  * This module contains the service and other things which should only load once in the application.
@@ -21,7 +22,8 @@ import {AnalyticsService} from "./services/analytics.service";
         },
         AnalyticsService,
         APIService,
-        LoaderService
+        LoaderService,
+        VotingService
     ],
 })
 export class CoreModule {

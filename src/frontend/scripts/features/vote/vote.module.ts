@@ -5,6 +5,7 @@ import {SharedModule} from "../../shared/shared.module";
 import {FooterModule} from "../../app/footer/footer.module";
 import {VoteRoutesModule} from "./vote.routes";
 import {HeaderModule} from "../../app/header/header.module";
+import {TweetComponent} from "./tweet/tweet.component";
 
 /**
  * The main voting page.
@@ -18,6 +19,7 @@ import {HeaderModule} from "../../app/header/header.module";
     ],
     declarations: [
         VoteComponent,
+        TweetComponent
     ],
     exports: [],
     providers: [],

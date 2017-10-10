@@ -11,6 +11,9 @@ import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
 public class TweetDiscoveryService {
 
@@ -18,6 +21,12 @@ public class TweetDiscoveryService {
     private final TwitterService twitterService;
     private final TweetRepository tweetRepository;
     private final SpringProfileService springProfileService;
+
+    /**
+     * Matches coin tags, like "$BTC" inside a string.
+     * Used for finding tags in status texts.
+     */
+    private static final Pattern COIN_TAG_PATTERN = Pattern.compile("\\$[a-zA-Z]+");
 
     @Autowired
     public TweetDiscoveryService(LogService logService,
@@ -37,7 +46,7 @@ public class TweetDiscoveryService {
     @Async
     public void discoverTweets() {
         // Disable discovery during unit testing.
-        if(springProfileService.isProfileActive(SpringProfileService.Profile.TESTING))
+        if (springProfileService.isProfileActive(SpringProfileService.Profile.TESTING))
             return;
 
         logService.logDebug(getClass(), "Searching for new Tweets...");
@@ -51,12 +60,34 @@ public class TweetDiscoveryService {
                 if (status.isRetweet())
                     status = status.getRetweetedStatus();
 
+                // Attempt to prune out wrong coin tweets.
+                if (!isFirstCoinMentioned(status.getText(), "$VEN"))
+                    return;
+
                 addStatusToRepository(status);
             });
 
         } catch (TwitterException e) {
             logService.logException(getClass(), e, "Unable to search for tweets");
         }
+    }
+
+    /**
+     * Determines if the provided coin (like "$BTC") is the first one mentioned in the text.
+     *
+     * @param text The text to check.
+     * @param coin The coin to look for. "$BTC", "$LTC", etc.
+     * @return True if the first coin mentioned in the status matches the provided coin.
+     */
+    private static boolean isFirstCoinMentioned(String text, String coin) {
+        Matcher matcher = COIN_TAG_PATTERN.matcher(text);
+
+        // Check that any coins were found.
+        if (!matcher.find())
+            return false;
+
+        // Check the first group against the coin.
+        return matcher.group().equalsIgnoreCase(coin);
     }
 
     /**
@@ -71,7 +102,7 @@ public class TweetDiscoveryService {
         }
 
         // Add the new status.
-        Tweet tweet = new Tweet(status);
+        Tweet tweet = new Tweet(status, "$VEN");
         tweetRepository.save(tweet);
         logService.logInfo(getClass(), "New Tweet Added: " + tweet);
     }
