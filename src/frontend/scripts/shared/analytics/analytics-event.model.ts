@@ -1,4 +1,4 @@
-export interface ATAnalyticsEvent {
+export interface SKAnalyticsEvent {
 
     category: string;
     action: string;
