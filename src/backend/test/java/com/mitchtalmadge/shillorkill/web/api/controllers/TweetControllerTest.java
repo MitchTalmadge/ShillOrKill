@@ -39,14 +39,14 @@ public class TweetControllerTest extends APITestAbstract {
     @Test
     public void TestGetTweetToVoteFor() throws Exception {
 
-        Tweet correctTweet = new Tweet(0, new Date(), "correct", "", "");
+        Tweet correctTweet = new Tweet(0, new Date(), "correct", "", "", "", "");
         correctTweet.voteShill();
 
-        Tweet incorrectTweet1 = new Tweet(1, new Date(), "incorrect1", "", "");
+        Tweet incorrectTweet1 = new Tweet(1, new Date(), "incorrect1", "", "", "", "");
         incorrectTweet1.voteWrong();
         incorrectTweet1.voteWrong();
 
-        Tweet incorrectTweet2 = new Tweet(1, new Date(), "incorrect2", "", "");
+        Tweet incorrectTweet2 = new Tweet(1, new Date(), "incorrect2", "", "", "", "");
         incorrectTweet2.voteShill();
         incorrectTweet2.voteKill();
         incorrectTweet2.voteWrong();
@@ -66,7 +66,7 @@ public class TweetControllerTest extends APITestAbstract {
      */
     @Test
     public void TestCastVoteShill() throws Exception {
-        Tweet tweet = new Tweet(0, new Date(), "", "", "");
+        Tweet tweet = new Tweet(0, new Date(), "", "", "", "", "");
         tweet = tweetRepository.save(tweet);
 
         mockMvc.perform(
@@ -88,7 +88,7 @@ public class TweetControllerTest extends APITestAbstract {
      */
     @Test
     public void TestCastVoteKill() throws Exception {
-        Tweet tweet = new Tweet(0, new Date(), "", "", "");
+        Tweet tweet = new Tweet(0, new Date(), "", "", "", "", "");
         tweet = tweetRepository.save(tweet);
 
         mockMvc.perform(
@@ -110,7 +110,7 @@ public class TweetControllerTest extends APITestAbstract {
      */
     @Test
     public void TestCastVoteWrongCoin() throws Exception {
-        Tweet tweet = new Tweet(0, new Date(), "", "", "");
+        Tweet tweet = new Tweet(0, new Date(), "", "", "", "", "");
         tweet = tweetRepository.save(tweet);
 
         mockMvc.perform(
@@ -132,7 +132,7 @@ public class TweetControllerTest extends APITestAbstract {
      */
     @Test
     public void TestCastVoteMultipleSelections() throws Exception {
-        Tweet tweet = new Tweet(0, new Date(), "", "", "");
+        Tweet tweet = new Tweet(0, new Date(), "", "", "", "", "");
         tweet = tweetRepository.save(tweet);
 
         mockMvc.perform(

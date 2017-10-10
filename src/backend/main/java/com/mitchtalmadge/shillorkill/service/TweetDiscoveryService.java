@@ -71,7 +71,7 @@ public class TweetDiscoveryService {
         }
 
         // Add the new status.
-        Tweet tweet = new Tweet(status);
+        Tweet tweet = new Tweet(status, "$VEN");
         tweetRepository.save(tweet);
         logService.logInfo(getClass(), "New Tweet Added: " + tweet);
     }

@@ -12,7 +12,11 @@ public class TweetDTO {
 
     public String text;
 
+    public String searchQuery;
+
     public String authorName;
+
+    public String authorScreenName;
 
     public String authorImageUrl;
 

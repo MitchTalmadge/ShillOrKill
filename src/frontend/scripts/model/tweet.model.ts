@@ -8,7 +8,11 @@ export interface SKTweet {
 
     text: string;
 
+    searchQuery: string;
+
     authorName: string;
+
+    authorScreenName: string;
 
     authorImageUrl: string;
 
