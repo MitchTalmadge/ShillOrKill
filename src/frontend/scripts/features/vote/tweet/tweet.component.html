@@ -9,10 +9,10 @@
             {{tweet.authorName}} (<a target="_blank" [href]="'https://twitter.com/' + tweet.authorScreenName">@{{tweet.authorScreenName}}</a>)
         </h5>
         <!-- Tweet Body -->
-        <p>{{tweet.text}}</p>
+        <p class="tweet-text">{{tweet.text}}</p>
         <!-- Creation Date and Source Link -->
         <a target="_blank" [href]="'https://twitter.com/' + tweet.authorScreenName + '/status/' + tweet.statusId">
-            {{tweet.createdAt | date: "MM/dd/yyyy h:mm a"}}
+            {{tweet.createdAt | date: "h:mm a - d MMM yyyy"}}
         </a>
     </div>
 </div>
