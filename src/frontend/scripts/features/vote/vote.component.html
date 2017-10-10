@@ -13,10 +13,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-lg btn-block btn-outline-success" (click)="voteShill()">SHILL <i class="fa fa-rocket"></i></button>
+                            <button class="btn btn-lg btn-block btn-outline-success" [disabled]="!tweetForVoting" (click)="voteShill()">SHILL <i class="fa fa-rocket"></i></button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-lg btn-block btn-outline-danger" (click)="voteShill()">KILL <i class="fa fa-anchor"></i></button>
+                            <button class="btn btn-lg btn-block btn-outline-danger" [disabled]="!tweetForVoting" (click)="voteShill()">KILL <i class="fa fa-anchor"></i></button>
                         </div>
                     </div>
                 </div>

@@ -5,9 +5,7 @@ import com.mitchtalmadge.shillorkill.domain.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class TweetService {
@@ -25,19 +23,11 @@ public class TweetService {
      * @return The Tweet that should be voted on, or null if no Tweets exist in the database.
      */
     public Tweet getTweetForVoting() {
-        List<Tweet> allTweets = tweetRepository.findAll();
-
-        // Check for empty database.
-        if (allTweets.size() == 0)
+        List<Object[]> tweetsUnderTenVotes = tweetRepository.findAllTweetsUnderTenVotes();
+        if(tweetsUnderTenVotes.size() == 0)
             return null;
 
-        // Sort the Tweets by who has the least number of cumulative votes (either shills, kills, or wrongs).
-        List<Tweet> sortedTweets = allTweets.stream()
-                .sorted(Comparator.comparing((Tweet tweet) -> tweet.getShills() + tweet.getKills() + tweet.getWrongs()))
-                .collect(Collectors.toList());
-
-        // The least number of votes is chosen.
-        return sortedTweets.get(0);
+        return (Tweet) tweetsUnderTenVotes.get(0)[0];
     }
 
     /**

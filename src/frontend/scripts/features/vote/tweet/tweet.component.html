@@ -1,20 +1,26 @@
-<h2 *ngIf="tweet">{{tweet.searchQuery}}</h2>
-<hr />
-<div class="media" *ngIf="tweet">
-    <!-- Profile Picture -->
-    <img class="d-flex mr-3" [src]="tweet.authorImageUrl" alt="Profile Picture"/>
+<div *ngIf="tweet">
+    <h2>{{tweet.searchQuery}}</h2>
+    <hr/>
+    <div class="media">
+        <!-- Profile Picture -->
+        <img class="d-flex mr-3" [src]="tweet.authorImageUrl" alt="Profile Picture"/>
 
-    <!-- Content -->
-    <div class="media-body">
-        <!-- Author Name -->
-        <h5 class="mt-0">
-            {{tweet.authorName}} (<a target="_blank" [href]="'https://twitter.com/' + tweet.authorScreenName">@{{tweet.authorScreenName}}</a>)
-        </h5>
-        <!-- Tweet Body -->
-        <p>{{tweet.text}}</p>
-        <!-- Creation Date and Source Link -->
-        <span class="text-muted">{{tweet.createdAt | date: "MM/dd/yyyy h:mm a"}}</span> |
-        <a target="_blank" [href]="'https://twitter.com/' + tweet.authorScreenName + '/status/' + tweet.statusId">Tweet
-            Source</a>
+        <!-- Content -->
+        <div class="media-body">
+            <!-- Author Name -->
+            <h5 class="mt-0">
+                {{tweet.authorName}} (<a target="_blank" [href]="'https://twitter.com/' + tweet.authorScreenName">@{{tweet.authorScreenName}}</a>)
+            </h5>
+            <!-- Tweet Body -->
+            <p>{{tweet.text}}</p>
+            <!-- Creation Date and Source Link -->
+            <span class="text-muted">{{tweet.createdAt | date: "MM/dd/yyyy h:mm a"}}</span> |
+            <a target="_blank" [href]="'https://twitter.com/' + tweet.authorScreenName + '/status/' + tweet.statusId">Tweet
+                Source</a>
+        </div>
     </div>
+</div>
+
+<div *ngIf="!tweet">
+    <h3 class="text-center">There is currently nothing to vote on.</h3>
 </div>
