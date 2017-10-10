@@ -14,7 +14,7 @@ public class VoteValidator extends APIRequestValidator {
      */
     public void validateVote(VoteDTO voteDTO) {
         // Ensures one option is selected, no more and no less.
-        if (!(voteDTO.shill ^ voteDTO.kill ^ voteDTO.wrong))
+        if (!(voteDTO.shill ^ voteDTO.kill ^ voteDTO.unrelated))
             throw new ValidationException(APIResponse.statusBadRequestNotParsable("You must cast a vote for exactly one option."));
     }
 

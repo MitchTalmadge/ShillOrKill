@@ -37,17 +37,20 @@ export class VoteComponent implements OnInit {
             .then(tweet => {
                 this.tweetForVoting = tweet;
 
-                // Enable cool-down for 600ms.
-                this.coolDown = true;
+                // Disable cool-down after 600ms.
                 Observable.timer(600).subscribe(() => this.coolDown = false)
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err);
+                this.tweetForVoting = null;
+            })
     }
 
     /**
      * Votes for shill.
      */
     public voteShill(): void {
+        this.coolDown = true;
         this.votingService.castVote({shill: true}, this.tweetForVoting.id)
             .then(() => this.loadNewTweet())
             .catch(err => console.error(err))
@@ -57,16 +60,18 @@ export class VoteComponent implements OnInit {
      * Votes for kill.
      */
     public voteKill(): void {
+        this.coolDown = true;
         this.votingService.castVote({kill: true}, this.tweetForVoting.id)
             .then(() => this.loadNewTweet())
             .catch(err => console.error(err))
     }
 
     /**
-     * Votes for wrong coin.
+     * Votes for a tweet being unrelated to the coin.
      */
-    public voteWrong(): void {
-        this.votingService.castVote({wrong: true}, this.tweetForVoting.id)
+    public voteUnrelated(): void {
+        this.coolDown = true;
+        this.votingService.castVote({unrelated: true}, this.tweetForVoting.id)
             .then(() => this.loadNewTweet())
             .catch(err => console.error(err))
     }

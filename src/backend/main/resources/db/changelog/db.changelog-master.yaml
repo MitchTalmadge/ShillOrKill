@@ -3,3 +3,5 @@ databaseChangeLog:
       file: db/changelog/changeSets/1__Initial_Schema.xml
   - include:
       file: db/changelog/changeSets/2__Add_Author_ScreenName_And_Search_Query.xml
+  - include:
+      file: db/changelog/changeSets/3__Rename_Vote_Columns.xml

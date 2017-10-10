@@ -32,11 +32,11 @@ public class Tweet implements Serializable {
 
     private String authorImageUrl;
 
-    private int shills;
+    private int shillVotes;
 
-    private int kills;
+    private int killVotes;
 
-    private int wrongs;
+    private int unrelatedVotes;
 
     /**
      * Required 0-arg constructor for Spring Framework.
@@ -133,43 +133,43 @@ public class Tweet implements Serializable {
     /**
      * @return The number of recorded shill votes for this tweet.
      */
-    public int getShills() {
-        return shills;
+    public int getShillVotes() {
+        return shillVotes;
     }
 
     /**
      * @return The number of recorded kill votes for this tweet.
      */
-    public int getKills() {
-        return kills;
+    public int getKillVotes() {
+        return killVotes;
     }
 
     /**
-     * @return The number of recorded times that the tweet was voted as being about the wrong coin.
+     * @return The number of recorded times that the tweet was voted as unrelated to the coin.
      */
-    public int getWrongs() {
-        return wrongs;
+    public int getUnrelatedVotes() {
+        return unrelatedVotes;
     }
 
     /**
      * Adds a vote to the shill counter.
      */
     public void voteShill() {
-        shills++;
+        shillVotes++;
     }
 
     /**
      * Adds a vote to the kill counter.
      */
     public void voteKill() {
-        kills++;
+        killVotes++;
     }
 
     /**
-     * Adds a vote to the wrong coin counter.
+     * Adds a vote to the unrelated counter.
      */
-    public void voteWrong() {
-        wrongs++;
+    public void voteUnrelated() {
+        unrelatedVotes++;
     }
 
     @Override
@@ -182,9 +182,9 @@ public class Tweet implements Serializable {
                 ", searchQuery='" + searchQuery + '\'' +
                 ", authorName='" + authorName + '\'' +
                 ", authorScreenName='" + authorScreenName + '\'' +
-                ", shills=" + shills +
-                ", kills=" + kills +
-                ", wrongs=" + wrongs +
+                ", shillVotes=" + shillVotes +
+                ", killVotes=" + killVotes +
+                ", unrelatedVotes=" + unrelatedVotes +
                 '}';
     }
 
@@ -196,9 +196,9 @@ public class Tweet implements Serializable {
         Tweet tweet = (Tweet) o;
 
         if (statusId != tweet.statusId) return false;
-        if (shills != tweet.shills) return false;
-        if (kills != tweet.kills) return false;
-        if (wrongs != tweet.wrongs) return false;
+        if (shillVotes != tweet.shillVotes) return false;
+        if (killVotes != tweet.killVotes) return false;
+        if (unrelatedVotes != tweet.unrelatedVotes) return false;
         if (createdAt != null ? !createdAt.equals(tweet.createdAt) : tweet.createdAt != null) return false;
         if (text != null ? !text.equals(tweet.text) : tweet.text != null) return false;
         if (searchQuery != null ? !searchQuery.equals(tweet.searchQuery) : tweet.searchQuery != null) return false;
@@ -217,9 +217,9 @@ public class Tweet implements Serializable {
         result = 31 * result + (authorName != null ? authorName.hashCode() : 0);
         result = 31 * result + (authorScreenName != null ? authorScreenName.hashCode() : 0);
         result = 31 * result + (authorImageUrl != null ? authorImageUrl.hashCode() : 0);
-        result = 31 * result + shills;
-        result = 31 * result + kills;
-        result = 31 * result + wrongs;
+        result = 31 * result + shillVotes;
+        result = 31 * result + killVotes;
+        result = 31 * result + unrelatedVotes;
         return result;
     }
 }

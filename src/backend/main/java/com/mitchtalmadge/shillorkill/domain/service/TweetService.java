@@ -1,6 +1,7 @@
 package com.mitchtalmadge.shillorkill.domain.service;
 
 import com.mitchtalmadge.shillorkill.domain.model.Tweet;
+import com.mitchtalmadge.shillorkill.domain.model.VoteDTO;
 import com.mitchtalmadge.shillorkill.domain.repository.TweetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,33 +24,30 @@ public class TweetService {
      * @return The Tweet that should be voted on, or null if no Tweets exist in the database.
      */
     public Tweet getTweetForVoting() {
-        List<Object[]> tweetsUnderTenVotes = tweetRepository.findAllTweetsUnderTenVotes();
-        if(tweetsUnderTenVotes.size() == 0)
+        List<Object[]> results = tweetRepository.findAllTweetsUnderFiveVotes();
+        if (results.size() == 0)
             return null;
 
-        return (Tweet) tweetsUnderTenVotes.get(0)[0];
+        return (Tweet) results.get(0)[0];
     }
 
     /**
      * Casts a vote for the given Tweet.
-     * Only one of shill/kill/wrong should be true.
      *
      * @param tweetId The ID of the Tweet entity to vote for.
-     * @param shill   True if the vote is for shill.
-     * @param kill    True if the vote is for kill.
-     * @param wrong   True if the vote is for wrong coin.
+     * @param voteDTO The vote.
      */
-    public void castVote(long tweetId, boolean shill, boolean kill, boolean wrong) {
+    public void castVote(long tweetId, VoteDTO voteDTO) {
         // Find tweet.
         Tweet tweet = tweetRepository.findOne(tweetId);
 
         // Update tweet.
-        if (shill)
+        if (voteDTO.shill)
             tweet.voteShill();
-        else if (kill)
+        else if (voteDTO.kill)
             tweet.voteKill();
-        else if (wrong)
-            tweet.voteWrong();
+        else if (voteDTO.unrelated)
+            tweet.voteUnrelated();
 
         // Save tweet.
         tweetRepository.save(tweet);
