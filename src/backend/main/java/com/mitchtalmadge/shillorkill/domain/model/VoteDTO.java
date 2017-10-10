@@ -2,7 +2,7 @@ package com.mitchtalmadge.shillorkill.domain.model;
 
 /**
  * A vote response from the client.
- * Only one of shill/kill/wrong may be set to true.
+ * Only one type of vote may be set to true.
  */
 public class VoteDTO {
 
@@ -17,8 +17,8 @@ public class VoteDTO {
     public boolean kill;
 
     /**
-     * If this vote is for a wrong coin.
+     * If this vote is to mark the tweet as unrelated to the coin.
      */
-    public boolean wrong;
+    public boolean unrelated;
 
 }

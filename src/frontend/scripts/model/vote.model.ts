@@ -4,5 +4,5 @@ export interface SKVote {
 
     kill?: boolean;
 
-    wrong?: boolean;
+    unrelated?: boolean;
 }

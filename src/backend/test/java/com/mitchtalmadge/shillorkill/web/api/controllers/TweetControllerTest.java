@@ -43,13 +43,13 @@ public class TweetControllerTest extends APITestAbstract {
         correctTweet.voteShill();
 
         Tweet incorrectTweet1 = new Tweet(1, new Date(), "incorrect1", "", "", "", "");
-        incorrectTweet1.voteWrong();
-        incorrectTweet1.voteWrong();
+        incorrectTweet1.voteUnrelated();
+        incorrectTweet1.voteUnrelated();
 
         Tweet incorrectTweet2 = new Tweet(1, new Date(), "incorrect2", "", "", "", "");
         incorrectTweet2.voteShill();
         incorrectTweet2.voteKill();
-        incorrectTweet2.voteWrong();
+        incorrectTweet2.voteUnrelated();
 
         tweetRepository.save(correctTweet);
         tweetRepository.save(incorrectTweet1);
@@ -78,9 +78,9 @@ public class TweetControllerTest extends APITestAbstract {
 
         tweet = tweetRepository.findOne(tweet.getId());
 
-        Assert.assertEquals(1, tweet.getShills());
-        Assert.assertEquals(0, tweet.getKills());
-        Assert.assertEquals(0, tweet.getWrongs());
+        Assert.assertEquals(1, tweet.getShillVotes());
+        Assert.assertEquals(0, tweet.getKillVotes());
+        Assert.assertEquals(0, tweet.getUnrelatedVotes());
     }
 
     /**
@@ -100,9 +100,9 @@ public class TweetControllerTest extends APITestAbstract {
 
         tweet = tweetRepository.findOne(tweet.getId());
 
-        Assert.assertEquals(0, tweet.getShills());
-        Assert.assertEquals(1, tweet.getKills());
-        Assert.assertEquals(0, tweet.getWrongs());
+        Assert.assertEquals(0, tweet.getShillVotes());
+        Assert.assertEquals(1, tweet.getKillVotes());
+        Assert.assertEquals(0, tweet.getUnrelatedVotes());
     }
 
     /**
@@ -116,15 +116,15 @@ public class TweetControllerTest extends APITestAbstract {
         mockMvc.perform(
                 post("/api/tweet/" + tweet.getId() + "/votes")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"wrong\": true}"))
+                        .content("{\"unrelated\": true}"))
                 .andDo(print())
                 .andExpect(status().isOk());
 
         tweet = tweetRepository.findOne(tweet.getId());
 
-        Assert.assertEquals(0, tweet.getShills());
-        Assert.assertEquals(0, tweet.getKills());
-        Assert.assertEquals(1, tweet.getWrongs());
+        Assert.assertEquals(0, tweet.getShillVotes());
+        Assert.assertEquals(0, tweet.getKillVotes());
+        Assert.assertEquals(1, tweet.getUnrelatedVotes());
     }
 
     /**
@@ -138,15 +138,15 @@ public class TweetControllerTest extends APITestAbstract {
         mockMvc.perform(
                 post("/api/tweet/" + tweet.getId() + "/votes")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"shill\": true, \"wrong\": true}"))
+                        .content("{\"shill\": true, \"unrelated\": true}"))
                 .andDo(print())
                 .andExpect(status().isBadRequest());
 
         tweet = tweetRepository.findOne(tweet.getId());
 
-        Assert.assertEquals(0, tweet.getShills());
-        Assert.assertEquals(0, tweet.getKills());
-        Assert.assertEquals(0, tweet.getWrongs());
+        Assert.assertEquals(0, tweet.getShillVotes());
+        Assert.assertEquals(0, tweet.getKillVotes());
+        Assert.assertEquals(0, tweet.getUnrelatedVotes());
     }
 
 }

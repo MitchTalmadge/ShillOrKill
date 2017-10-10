@@ -41,7 +41,10 @@ export class VoteComponent implements OnInit {
                 this.coolDown = true;
                 Observable.timer(600).subscribe(() => this.coolDown = false)
             })
-            .catch(err => console.error(err))
+            .catch(err => {
+                console.error(err);
+                this.tweetForVoting = null;
+            })
     }
 
     /**
@@ -63,10 +66,10 @@ export class VoteComponent implements OnInit {
     }
 
     /**
-     * Votes for wrong coin.
+     * Votes for a tweet being unrelated to the coin.
      */
-    public voteWrong(): void {
-        this.votingService.castVote({wrong: true}, this.tweetForVoting.id)
+    public voteUnrelated(): void {
+        this.votingService.castVote({unrelated: true}, this.tweetForVoting.id)
             .then(() => this.loadNewTweet())
             .catch(err => console.error(err))
     }
