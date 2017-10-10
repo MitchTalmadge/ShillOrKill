@@ -4,14 +4,22 @@
 
         <div class="col-12 col-md-8 mb-3">
             <div class="card card-body">
+                <!-- A Tweet exists to display. -->
                 <div *ngIf="tweetForVoting">
+                    <!-- The Search Query used when finding the Tweet -->
                     <h2 class="d-inline">{{tweetForVoting.searchQuery}}</h2>
+                    <!-- Vote Wrong Coin -->
                     <button class="btn btn-outline-secondary font-weight-bold float-right"
                             [disabled]="!tweetForVoting" (click)="voteWrong()">WRONG COIN
                     </button>
+                    
                     <hr/>
+
+                    <!-- The Tweet itself. -->
                     <sk-tweet [tweet]="tweetForVoting"></sk-tweet>
                 </div>
+
+                <!-- No Tweet to display. -->
                 <div *ngIf="!tweetForVoting">
                     <h4>There is nothing to vote on right now.</h4>
                 </div>
@@ -22,11 +30,13 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
+                        <!-- Vote Shill -->
                         <div class="col">
                             <button class="btn btn-lg btn-block btn-outline-success font-weight-bold"
                                     [disabled]="!tweetForVoting" (click)="voteShill()">SHILL <i
                                     class="fa fa-rocket"></i></button>
                         </div>
+                        <!-- Vote Kill -->
                         <div class="col">
                             <button class="btn btn-lg btn-block btn-outline-danger font-weight-bold"
                                     [disabled]="!tweetForVoting" (click)="voteKill()">KILL <i class="fa fa-anchor"></i>
