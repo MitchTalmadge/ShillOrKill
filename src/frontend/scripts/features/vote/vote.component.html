@@ -4,7 +4,17 @@
 
         <div class="col-12 col-md-8 mb-3">
             <div class="card card-body">
-                <sk-tweet [tweet]="tweetForVoting"></sk-tweet>
+                <div *ngIf="tweetForVoting">
+                    <h2 class="d-inline">{{tweetForVoting.searchQuery}}</h2>
+                    <button class="btn btn-outline-secondary font-weight-bold float-right"
+                            [disabled]="!tweetForVoting" (click)="voteWrong()">WRONG COIN
+                    </button>
+                    <hr/>
+                    <sk-tweet [tweet]="tweetForVoting"></sk-tweet>
+                </div>
+                <div *ngIf="!tweetForVoting">
+                    <h4>There is nothing to vote on right now.</h4>
+                </div>
             </div>
         </div>
 
@@ -13,10 +23,14 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col">
-                            <button class="btn btn-lg btn-block btn-outline-success" [disabled]="!tweetForVoting" (click)="voteShill()">SHILL <i class="fa fa-rocket"></i></button>
+                            <button class="btn btn-lg btn-block btn-outline-success font-weight-bold"
+                                    [disabled]="!tweetForVoting" (click)="voteShill()">SHILL <i
+                                    class="fa fa-rocket"></i></button>
                         </div>
                         <div class="col">
-                            <button class="btn btn-lg btn-block btn-outline-danger" [disabled]="!tweetForVoting" (click)="voteShill()">KILL <i class="fa fa-anchor"></i></button>
+                            <button class="btn btn-lg btn-block btn-outline-danger font-weight-bold"
+                                    [disabled]="!tweetForVoting" (click)="voteKill()">KILL <i class="fa fa-anchor"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

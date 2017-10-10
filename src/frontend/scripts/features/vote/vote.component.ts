@@ -49,4 +49,13 @@ export class VoteComponent implements OnInit {
             .catch(err => console.error(err))
     }
 
+    /**
+     * Votes for wrong coin.
+     */
+    public voteWrong(): void {
+        this.votingService.castVote({wrong: true}, this.tweetForVoting.id)
+            .then(() => this.loadNewTweet())
+            .catch(err => console.error(err))
+    }
+
 }
