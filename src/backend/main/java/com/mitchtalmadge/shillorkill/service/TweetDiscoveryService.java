@@ -12,6 +12,7 @@ import twitter4j.QueryResult;
 import twitter4j.Status;
 import twitter4j.TwitterException;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,11 @@ public class TweetDiscoveryService {
      */
     private static final Pattern COIN_TAG_PATTERN = Pattern.compile("\\$[a-zA-Z]+");
 
+    /**
+     * RNG used for picking a coin when discovering tweets.
+     */
+    private final Random random = new Random();
+
     @Autowired
     public TweetDiscoveryService(LogService logService,
                                  TwitterService twitterService,
@@ -44,9 +50,9 @@ public class TweetDiscoveryService {
     }
 
     /**
-     * Searches for Tweets (statuses) relating to a random coin from CoinMarketCap every 5 minutes.
+     * Searches for Tweets (statuses) relating to a random coin from CoinMarketCap every minute.
      */
-    @Scheduled(fixedRate = 5 * 60_000, initialDelay = 30_000)
+    @Scheduled(fixedRate = 60_000, initialDelay = 30_000)
     @Async
     protected void discoverTweets() {
         // Cap off the number of saved tweets to 8,000
@@ -63,7 +69,9 @@ public class TweetDiscoveryService {
             return;
 
         // Select a random ticker and form a search query.
-        CMCTickerDTO ticker = tickers[(int) (Math.random() * tickers.length)];
+        // Tickers are picked on an absolute normal curve so that higher ranked tickers appear more often.
+        double multiplier = Math.abs(random.nextGaussian() * 0.33);
+        CMCTickerDTO ticker = tickers[(int) (multiplier >= 1 ? tickers.length - 1 : multiplier * tickers.length)];
         String searchQuery = "$" + ticker.symbol;
 
         logService.logDebug(getClass(), "Searching for tweets about " + searchQuery);
