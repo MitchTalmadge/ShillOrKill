@@ -6,13 +6,17 @@ public class TweetDTO {
 
     public long id;
 
-    public long statusId;
+    public String statusId;
 
     public Date createdAt;
 
     public String text;
 
+    public String searchQuery;
+
     public String authorName;
+
+    public String authorScreenName;
 
     public String authorImageUrl;
 

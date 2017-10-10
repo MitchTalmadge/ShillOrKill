@@ -1,4 +1,65 @@
 <sk-header></sk-header>
-<div class="container-fluid">
+<div class="container d-flex align-items-center h-100">
+    <div class="row align-items-center justify-content-center w-100 no-gutters">
+
+        <div class="col-12 col-md-8 mb-3">
+            <div class="card">
+                <div class="card-body p-2 p-md-3">
+                    <!-- A Tweet exists to display. -->
+                    <div *ngIf="tweetForVoting">
+                        <!-- The Search Query used when finding the Tweet -->
+                        <h2 class="d-inline">{{tweetForVoting.searchQuery}}</h2>
+                        <!-- Vote Unrelated Coin -->
+                        <button class="btn btn-outline-secondary font-weight-bold float-right"
+                                [disabled]="coolDown"
+                                (click)="voteUnrelated()"
+                                [sk-analytics]="{category: 'Vote', action: 'ClickUnrelated'}">
+                            UNRELATED
+                        </button>
+
+                        <hr/>
+
+                        <!-- The Tweet itself. -->
+                        <div class="tweet-container">
+                            <sk-tweet [tweet]="tweetForVoting"></sk-tweet>
+                        </div>
+                    </div>
+
+                    <!-- No Tweet to display. -->
+                    <div *ngIf="!tweetForVoting">
+                        <h4>There is nothing to vote on right now.</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <div class="card">
+                <div class="card-body p-2 p-md-3">
+                    <div class="row">
+                        <!-- Vote Shill -->
+                        <div class="col">
+                            <button class="btn btn-lg btn-block btn-outline-success font-weight-bold"
+                                    [disabled]="!tweetForVoting || coolDown"
+                                    (click)="voteShill()"
+                                    [sk-analytics]="{category: 'Vote', action: 'ClickShill'}">
+                                SHILL <i class="fa fa-rocket"></i>
+                            </button>
+                        </div>
+                        <!-- Vote Kill -->
+                        <div class="col">
+                            <button class="btn btn-lg btn-block btn-outline-danger font-weight-bold"
+                                    [disabled]="!tweetForVoting || coolDown"
+                                    (click)="voteKill()"
+                                    [sk-analytics]="{category: 'Vote', action: 'ClickKill'}">
+                                KILL <i class="fa fa-anchor"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 <sk-footer></sk-footer>

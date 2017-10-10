@@ -24,15 +24,19 @@ public class Tweet implements Serializable {
 
     private String text;
 
+    private String searchQuery;
+
     private String authorName;
+
+    private String authorScreenName;
 
     private String authorImageUrl;
 
-    private int shills;
+    private int shillVotes;
 
-    private int kills;
+    private int killVotes;
 
-    private int wrongs;
+    private int unrelatedVotes;
 
     /**
      * Required 0-arg constructor for Spring Framework.
@@ -46,13 +50,13 @@ public class Tweet implements Serializable {
      *
      * @param status The status to extract data from.
      */
-    public Tweet(Status status) {
-        this(status.getId(), status.getCreatedAt(), status.getText(), status.getUser().getName(), status.getUser().getProfileImageURLHttps());
+    public Tweet(Status status, String searchQuery) {
+        this(status.getId(), status.getCreatedAt(), status.getText(), status.getUser().getName(), status.getUser().getScreenName(), status.getUser().getProfileImageURLHttps(), searchQuery);
     }
 
     /**
      * Constructs a Tweet entity from the given data.
-     * Alternatively, use {@link Tweet#Tweet(twitter4j.Status)} to do this automatically given a Status.
+     * Alternatively, use {@link Tweet#Tweet(twitter4j.Status, String)} to do this automatically given a Status.
      *
      * @param statusId       The ID of the Status associated with this Tweet.
      * @param createdAt      When the Status was created on Twitter.
@@ -60,11 +64,13 @@ public class Tweet implements Serializable {
      * @param authorName     The name of the author of the Status.
      * @param authorImageUrl The URL (HTTPS) to the author's profile picture.
      */
-    public Tweet(long statusId, Date createdAt, String text, String authorName, String authorImageUrl) {
+    public Tweet(long statusId, Date createdAt, String text, String authorName, String authorScreenName, String authorImageUrl, String searchQuery) {
         this.statusId = statusId;
         this.createdAt = createdAt;
         this.text = text;
+        this.searchQuery = searchQuery;
         this.authorName = authorName;
+        this.authorScreenName = authorScreenName;
         this.authorImageUrl = authorImageUrl;
     }
 
@@ -97,10 +103,24 @@ public class Tweet implements Serializable {
     }
 
     /**
+     * @return The search query used when finding the tweet.
+     */
+    public String getSearchQuery() {
+        return searchQuery;
+    }
+
+    /**
      * @return The display name of the author of this tweet.
      */
     public String getAuthorName() {
         return authorName;
+    }
+
+    /**
+     * @return The screen name of the author of this tweet (@someone).
+     */
+    public String getAuthorScreenName() {
+        return authorScreenName;
     }
 
     /**
@@ -113,53 +133,58 @@ public class Tweet implements Serializable {
     /**
      * @return The number of recorded shill votes for this tweet.
      */
-    public int getShills() {
-        return shills;
+    public int getShillVotes() {
+        return shillVotes;
     }
 
     /**
      * @return The number of recorded kill votes for this tweet.
      */
-    public int getKills() {
-        return kills;
+    public int getKillVotes() {
+        return killVotes;
     }
 
     /**
-     * @return The number of recorded times that the tweet was voted as being about the wrong coin.
+     * @return The number of recorded times that the tweet was voted as unrelated to the coin.
      */
-    public int getWrongs() {
-        return wrongs;
+    public int getUnrelatedVotes() {
+        return unrelatedVotes;
     }
 
     /**
      * Adds a vote to the shill counter.
      */
     public void voteShill() {
-        shills++;
+        shillVotes++;
     }
 
     /**
      * Adds a vote to the kill counter.
      */
     public void voteKill() {
-        kills++;
+        killVotes++;
     }
 
     /**
-     * Adds a vote to the wrong coin counter.
+     * Adds a vote to the unrelated counter.
      */
-    public void voteWrong() {
-        wrongs++;
+    public void voteUnrelated() {
+        unrelatedVotes++;
     }
 
     @Override
     public String toString() {
         return "Tweet{" +
-                "text='" + text + '\'' +
+                "id=" + id +
+                ", statusId=" + statusId +
+                ", createdAt=" + createdAt +
+                ", text='" + text + '\'' +
+                ", searchQuery='" + searchQuery + '\'' +
                 ", authorName='" + authorName + '\'' +
-                ", shills=" + shills +
-                ", kills=" + kills +
-                ", wrongs=" + wrongs +
+                ", authorScreenName='" + authorScreenName + '\'' +
+                ", shillVotes=" + shillVotes +
+                ", killVotes=" + killVotes +
+                ", unrelatedVotes=" + unrelatedVotes +
                 '}';
     }
 
@@ -171,12 +196,15 @@ public class Tweet implements Serializable {
         Tweet tweet = (Tweet) o;
 
         if (statusId != tweet.statusId) return false;
-        if (shills != tweet.shills) return false;
-        if (kills != tweet.kills) return false;
-        if (wrongs != tweet.wrongs) return false;
+        if (shillVotes != tweet.shillVotes) return false;
+        if (killVotes != tweet.killVotes) return false;
+        if (unrelatedVotes != tweet.unrelatedVotes) return false;
         if (createdAt != null ? !createdAt.equals(tweet.createdAt) : tweet.createdAt != null) return false;
         if (text != null ? !text.equals(tweet.text) : tweet.text != null) return false;
+        if (searchQuery != null ? !searchQuery.equals(tweet.searchQuery) : tweet.searchQuery != null) return false;
         if (authorName != null ? !authorName.equals(tweet.authorName) : tweet.authorName != null) return false;
+        if (authorScreenName != null ? !authorScreenName.equals(tweet.authorScreenName) : tweet.authorScreenName != null)
+            return false;
         return authorImageUrl != null ? authorImageUrl.equals(tweet.authorImageUrl) : tweet.authorImageUrl == null;
     }
 
@@ -185,11 +213,13 @@ public class Tweet implements Serializable {
         int result = (int) (statusId ^ (statusId >>> 32));
         result = 31 * result + (createdAt != null ? createdAt.hashCode() : 0);
         result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (searchQuery != null ? searchQuery.hashCode() : 0);
         result = 31 * result + (authorName != null ? authorName.hashCode() : 0);
+        result = 31 * result + (authorScreenName != null ? authorScreenName.hashCode() : 0);
         result = 31 * result + (authorImageUrl != null ? authorImageUrl.hashCode() : 0);
-        result = 31 * result + shills;
-        result = 31 * result + kills;
-        result = 31 * result + wrongs;
+        result = 31 * result + shillVotes;
+        result = 31 * result + killVotes;
+        result = 31 * result + unrelatedVotes;
         return result;
     }
 }

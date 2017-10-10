@@ -1,0 +1,13 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <!-- Renames the vote count columns to be more descriptive. -->
+    <changeSet id="3" author="Mitch Talmadge">
+        <renameColumn tableName="tweet" oldColumnName="shills" newColumnName="shill_votes"/>
+        <renameColumn tableName="tweet" oldColumnName="kills" newColumnName="kill_votes"/>
+        <renameColumn tableName="tweet" oldColumnName="wrongs" newColumnName="unrelated_votes"/>
+    </changeSet>
+
+</databaseChangeLog>

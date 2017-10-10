@@ -1,0 +1,11 @@
+@import "~bootstrap/scss/bootstrap-grid.scss";
+
+img {
+  border-radius: 3px;
+}
+
+@include media-breakpoint-up('md') {
+  p.tweet-text {
+    font-size: 15pt;
+  }
+}

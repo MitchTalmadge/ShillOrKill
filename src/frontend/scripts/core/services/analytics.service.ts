@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {NavigationEnd, Router} from "@angular/router";
-import {ATAnalyticsEvent} from "../../shared/analytics/analytics-event.model";
+import {SKAnalyticsEvent} from "../../shared/analytics/analytics-event.model";
 
 declare const ga: Function;
 
@@ -24,7 +24,7 @@ export class AnalyticsService {
      * Sends an event to Google for tracking.
      * @param analyticsEvent The event data.
      */
-    public static sendEvent(analyticsEvent: ATAnalyticsEvent): void {
+    public static sendEvent(analyticsEvent: SKAnalyticsEvent): void {
         ga('send', 'event', analyticsEvent.category, analyticsEvent.action, analyticsEvent.label, analyticsEvent.value);
     }
 

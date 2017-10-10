@@ -1,0 +1,27 @@
+<div class="media" *ngIf="tweet">
+    <!-- Profile Picture -->
+    <img class="d-flex mr-3" [src]="tweet.authorImageUrl" alt="Profile Picture"/>
+
+    <!-- Content -->
+    <div class="media-body">
+        <!-- Author Name -->
+        <h5 class="mt-0">
+            {{tweet.authorName}}
+            (
+            <a target="_blank"
+                [href]="'https://twitter.com/' + tweet.authorScreenName"
+               [sk-analytics]="{category: 'Tweet', action: 'ClickScreenName'}">
+                @{{tweet.authorScreenName}}
+            </a>
+            )
+        </h5>
+        <!-- Tweet Body -->
+        <p class="tweet-text">{{tweet.text}}</p>
+        <!-- Creation Date and Source Link -->
+        <a target="_blank"
+           [href]="'https://twitter.com/' + tweet.authorScreenName + '/status/' + tweet.statusId"
+           [sk-analytics]="{category: 'Tweet', action: 'ClickSource'}">
+            {{tweet.createdAt | date: "h:mm a - d MMM yyyy"}}
+        </a>
+    </div>
+</div>

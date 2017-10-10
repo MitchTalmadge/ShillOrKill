@@ -58,7 +58,7 @@ public class TweetController extends APIControllerAbstract {
         voteValidator.validateVote(voteDTO);
 
         // Cast the vote.
-        tweetService.castVote(id, voteDTO.shill, voteDTO.kill, voteDTO.wrong);
+        tweetService.castVote(id, voteDTO);
 
         return APIResponse.statusNoContent();
     }

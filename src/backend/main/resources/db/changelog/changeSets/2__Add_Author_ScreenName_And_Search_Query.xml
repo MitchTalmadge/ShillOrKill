@@ -1,0 +1,14 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <!-- Adds the author's screen name (username) and the search query used to find the tweet. -->
+    <changeSet id="2" author="Mitch Talmadge">
+        <addColumn tableName="tweet">
+            <column name="author_screen_name" afterColumn="author_name" type="text" defaultValue="Unknown Screen Name"/>
+            <column name="search_query" afterColumn="text" type="text" defaultValue="Unknown Search Query"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
