@@ -1,5 +1,10 @@
 .header {
-    height: 120px;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
     line-height: 50px;
 
     font-family: "Droid Sans", sans-serif;
@@ -8,4 +13,5 @@
 
 .logo {
     width: 100%;
+    padding: 10px 0;
 }

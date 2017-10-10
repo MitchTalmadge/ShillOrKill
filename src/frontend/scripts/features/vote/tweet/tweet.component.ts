@@ -4,7 +4,7 @@ import {SKTweet} from "../../../model/tweet.model";
 @Component({
     selector: 'sk-tweet',
     templateUrl: 'tweet.component.html',
-    styleUrls: ['tweet.component.css']
+    styleUrls: ['tweet.component.scss']
 })
 
 export class TweetComponent implements OnInit {
