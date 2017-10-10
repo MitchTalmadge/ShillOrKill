@@ -11,7 +11,7 @@
                         <h2 class="d-inline">{{tweetForVoting.searchQuery}}</h2>
                         <!-- Vote Wrong Coin -->
                         <button class="btn btn-outline-secondary font-weight-bold float-right"
-                                [disabled]="!tweetForVoting" (click)="voteWrong()">WRONG COIN
+                                [disabled]="coolDown" (click)="voteWrong()">WRONG COIN
                         </button>
 
                         <hr/>
@@ -37,13 +37,13 @@
                         <!-- Vote Shill -->
                         <div class="col">
                             <button class="btn btn-lg btn-block btn-outline-success font-weight-bold"
-                                    [disabled]="!tweetForVoting" (click)="voteShill()">SHILL <i
+                                    [disabled]="!tweetForVoting || coolDown" (click)="voteShill()">SHILL <i
                                     class="fa fa-rocket"></i></button>
                         </div>
                         <!-- Vote Kill -->
                         <div class="col">
                             <button class="btn btn-lg btn-block btn-outline-danger font-weight-bold"
-                                    [disabled]="!tweetForVoting" (click)="voteKill()">KILL <i class="fa fa-anchor"></i>
+                                    [disabled]="!tweetForVoting || coolDown" (click)="voteKill()">KILL <i class="fa fa-anchor"></i>
                             </button>
                         </div>
                     </div>

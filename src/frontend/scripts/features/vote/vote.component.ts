@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {VotingService} from "../../core/services/voting.service";
 import {SKTweet} from "../../model/tweet.model";
+import {Observable} from "rxjs/Observable";
 
 @Component({
     selector: 'sk-vote',
@@ -13,6 +14,12 @@ export class VoteComponent implements OnInit {
      * The tweet that should be voted on.
      */
     tweetForVoting: SKTweet;
+
+    /**
+     * True if the cool-down (de-bounce) is enabled.
+     * Used to prevent accidental clicks.
+     */
+    coolDown: boolean = false;
 
     constructor(private votingService: VotingService) {
 
@@ -27,7 +34,13 @@ export class VoteComponent implements OnInit {
      */
     private loadNewTweet(): void {
         this.votingService.getTweetForVoting()
-            .then(tweet => this.tweetForVoting = tweet)
+            .then(tweet => {
+                this.tweetForVoting = tweet;
+
+                // Enable cool-down for 600ms.
+                this.coolDown = true;
+                Observable.timer(600).subscribe(() => this.coolDown = false)
+            })
             .catch(err => console.error(err))
     }
 
