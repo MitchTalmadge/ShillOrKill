@@ -112,6 +112,17 @@ const config = {
         setImmediate: false,
         clearTimeout: true,
         setTimeout: true
+    },
+
+    devServer: {
+        contentBase: path.join(__dirname, "../target/classes/static/"),
+        proxy: {
+            "/api": "http://127.0.0.1:8080/"
+        },
+        disableHostCheck: true,
+        historyApiFallback: true,
+        compress: true,
+        port: 9000
     }
 };
 
