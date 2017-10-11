@@ -44,6 +44,8 @@ public class TweetService {
         // Update tweet.
         if (voteDTO.shill)
             tweet.voteShill();
+        else if (voteDTO.neutral)
+            tweet.voteNeutral();
         else if (voteDTO.kill)
             tweet.voteKill();
         else if (voteDTO.unrelated)

@@ -57,6 +57,16 @@ export class VoteComponent implements OnInit {
     }
 
     /**
+     * Votes for neutral.
+     */
+    public voteNeutral(): void {
+        this.coolDown = true;
+        this.votingService.castVote({neutral: true}, this.tweetForVoting.id)
+            .then(() => this.loadNewTweet())
+            .catch(err => console.error(err))
+    }
+
+    /**
      * Votes for kill.
      */
     public voteKill(): void {

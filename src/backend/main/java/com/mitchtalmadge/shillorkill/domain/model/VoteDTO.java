@@ -7,12 +7,17 @@ package com.mitchtalmadge.shillorkill.domain.model;
 public class VoteDTO {
 
     /**
-     * If this vote is for a shill.
+     * If this vote is shill.
      */
     public boolean shill;
 
     /**
-     * If this vote is for a kill.
+     * If this vote is neutral.
+     */
+    public boolean neutral;
+
+    /**
+     * If this vote is kill.
      */
     public boolean kill;
 
