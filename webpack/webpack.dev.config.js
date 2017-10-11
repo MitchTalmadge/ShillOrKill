@@ -11,18 +11,6 @@ config.module.rules.unshift(
     }
 );
 
-config.devServer = {
-    contentBase: path.join(__dirname, "../target/classes/static/"),
-    proxy: {
-        "/api": "http://127.0.0.1:8080/"
-    },
-    disableHostCheck: true,
-    historyApiFallback: true,
-    compress: true,
-    port: 9000
-};
-
-
 config.plugins.push(
     // HTML Webpack Plugin with dev set to true.
     new HtmlWebpackPlugin({
