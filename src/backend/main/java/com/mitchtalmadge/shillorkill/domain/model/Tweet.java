@@ -34,6 +34,8 @@ public class Tweet implements Serializable {
 
     private int shillVotes;
 
+    private int neutralVotes;
+
     private int killVotes;
 
     private int unrelatedVotes;
@@ -138,6 +140,13 @@ public class Tweet implements Serializable {
     }
 
     /**
+     * @return The number of recorded neutral votes for this tweet.
+     */
+    public int getNeutralVotes() {
+        return neutralVotes;
+    }
+
+    /**
      * @return The number of recorded kill votes for this tweet.
      */
     public int getKillVotes() {
@@ -157,6 +166,14 @@ public class Tweet implements Serializable {
     public void voteShill() {
         shillVotes++;
     }
+
+     /**
+     * Adds a vote to the neutral counter.
+     */
+    public void voteNeutral() {
+        neutralVotes++;
+    }
+
 
     /**
      * Adds a vote to the kill counter.
@@ -183,6 +200,7 @@ public class Tweet implements Serializable {
                 ", authorName='" + authorName + '\'' +
                 ", authorScreenName='" + authorScreenName + '\'' +
                 ", shillVotes=" + shillVotes +
+                ", neutralVotes =" + neutralVotes +
                 ", killVotes=" + killVotes +
                 ", unrelatedVotes=" + unrelatedVotes +
                 '}';
@@ -197,6 +215,7 @@ public class Tweet implements Serializable {
 
         if (statusId != tweet.statusId) return false;
         if (shillVotes != tweet.shillVotes) return false;
+        if (neutralVotes != tweet.neutralVotes) return false;
         if (killVotes != tweet.killVotes) return false;
         if (unrelatedVotes != tweet.unrelatedVotes) return false;
         if (createdAt != null ? !createdAt.equals(tweet.createdAt) : tweet.createdAt != null) return false;
@@ -218,6 +237,7 @@ public class Tweet implements Serializable {
         result = 31 * result + (authorScreenName != null ? authorScreenName.hashCode() : 0);
         result = 31 * result + (authorImageUrl != null ? authorImageUrl.hashCode() : 0);
         result = 31 * result + shillVotes;
+        result = 31 * result + neutralVotes;
         result = 31 * result + killVotes;
         result = 31 * result + unrelatedVotes;
         return result;

@@ -15,7 +15,7 @@ public interface TweetRepository extends JpaRepository<Tweet, Long> {
      *
      * @return An Object array containing: 1. The Tweet, and 2. The number of total votes for the Tweet.
      */
-    @Query("SELECT t, (t.shillVotes + t.killVotes + t.unrelatedVotes) as votes from Tweet t WHERE (t.shillVotes + t.killVotes + t.unrelatedVotes) < 5 ORDER BY votes ASC")
+    @Query("SELECT t, (t.shillVotes + t.neutralVotes + t.killVotes + t.unrelatedVotes) as votes from Tweet t WHERE (t.shillVotes + t.neutralVotes + t.killVotes + t.unrelatedVotes) < 5 ORDER BY votes ASC")
     List<Object[]> findAllTweetsUnderFiveVotes();
 
 }

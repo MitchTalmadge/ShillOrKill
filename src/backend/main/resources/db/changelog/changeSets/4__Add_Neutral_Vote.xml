@@ -1,0 +1,13 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.2.xsd">
+
+    <!-- Adds a "neutral" vote option. -->
+    <changeSet id="4" author="Mitch Talmadge">
+        <addColumn tableName="tweet">
+            <column name="neutral_votes" type="int" afterColumn="shill_votes"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>

@@ -43,7 +43,16 @@
                                     [disabled]="!tweetForVoting || coolDown"
                                     (click)="voteShill()"
                                     [sk-analytics]="{category: 'Vote', action: 'ClickShill'}">
-                                SHILL <i class="fa fa-rocket"></i>
+                                <span class="d-none d-md-inline">SHILL</span> <i class="fa fa-rocket"></i>
+                            </button>
+                        </div>
+                        <!-- Vote Shill -->
+                        <div class="col">
+                            <button class="btn btn-lg btn-block btn-outline-secondary font-weight-bold"
+                                    [disabled]="!tweetForVoting || coolDown"
+                                    (click)="voteNeutral()"
+                                    [sk-analytics]="{category: 'Vote', action: 'ClickNeutral'}">
+                                <span class="d-none d-md-inline">NEUTRAL</span> <i class="fa fa-minus"></i>
                             </button>
                         </div>
                         <!-- Vote Kill -->
@@ -52,7 +61,7 @@
                                     [disabled]="!tweetForVoting || coolDown"
                                     (click)="voteKill()"
                                     [sk-analytics]="{category: 'Vote', action: 'ClickKill'}">
-                                KILL <i class="fa fa-anchor"></i>
+                                <span class="d-none d-md-inline">KILL</span> <i class="fa fa-anchor"></i>
                             </button>
                         </div>
                     </div>
