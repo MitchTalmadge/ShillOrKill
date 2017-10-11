@@ -7,3 +7,5 @@ databaseChangeLog:
       file: db/changelog/changeSets/3__Rename_Vote_Columns.xml
   - include:
       file: db/changelog/changeSets/4__Add_Neutral_Vote.xml
+  - include:
+      file: db/changelog/changeSets/5__Fix_Neutral_Default_Value.xml
