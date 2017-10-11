@@ -9,8 +9,9 @@
     <packaging>jar</packaging>
 
     <name>shill-or-kill</name>
-    <description>A small web app for training a cryptocurrency machine learning algorithm to identify &quot;hot&quot;
-        coins based on tweets.
+    <description>
+        A small web app for training a cryptocurrency machine learning algorithm
+        to identify popular coins based on tweets.
     </description>
 
     <parent>
